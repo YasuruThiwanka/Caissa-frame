@@ -1,0 +1,66 @@
+.card-composer-canvas {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #0f0f1a, #1a1a2e);
+    border-radius: 20px;
+    padding: 20px;
+    position: relative;
+    min-height: 500px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.canvas-placeholder {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.placeholder-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.canvas-placeholder p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+.canvas-placeholder .hint {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.drag-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(99, 102, 241, 0.9);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Konva stage styling */
+.card-composer-canvas .konvajs-content {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
