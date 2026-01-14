@@ -22,22 +22,41 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      # (Optional but recommended) Configure Pages
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
+      # Setup Node + npm cache
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # Install deps (uses package-lock.json)
+      - name: Install dependencies
+        run: npm ci
+
+      # Build your React app (assumes your build outputs to ./dist)
+      - name: Build
+        run: npm run build
+
+      # Upload the build output for Pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: './dist'
+          path: ./dist
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
